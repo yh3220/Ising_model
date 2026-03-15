@@ -140,6 +140,9 @@ function recomputeObservables() {
 // charts
 // =========================
 function initCharts() {
+    if (energyChart) energyChart.destroy();
+    if (magChart) magChart.destroy();
+
     const energyCtx = document.getElementById("energy-chart").getContext("2d");
     const magCtx = document.getElementById("mag-chart").getContext("2d");
 
@@ -148,11 +151,14 @@ function initCharts() {
         data: {
             labels: timeData,
             datasets: [{
+                label: "",
                 data: energyData,
                 borderColor: "#ff0037",
+                backgroundColor: "rgba(0,0,0,0)",
                 borderWidth: 4,
                 pointRadius: 0,
-                tension: 0
+                lineTension: 0,
+                fill: false
             }]
         },
         options: {
@@ -163,8 +169,18 @@ function initCharts() {
                 display: false
             },
             scales: {
-                x: { title: { display: true, text: "t" } },
-                y: { title: { display: true, text: "E" } }
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "t"
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "E"
+                    }
+                }]
             }
         }
     });
@@ -174,11 +190,14 @@ function initCharts() {
         data: {
             labels: timeData,
             datasets: [{
+                label: "",
                 data: magData,
                 borderColor: "#00bfff",
+                backgroundColor: "rgba(0,0,0,0)",
                 borderWidth: 4,
                 pointRadius: 0,
-                tension: 0
+                lineTension: 0,
+                fill: false
             }]
         },
         options: {
@@ -189,12 +208,22 @@ function initCharts() {
                 display: false
             },
             scales: {
-                x: { title: { display: true, text: "t" } },
-                y: {
-                    min: -1,
-                    max: 1,
-                    title: { display: true, text: "m" }
-                }
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "t"
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: -1,
+                        max: 1
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "m"
+                    }
+                }]
             }
         }
     });
