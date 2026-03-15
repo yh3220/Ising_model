@@ -159,10 +159,8 @@ function initCharts() {
             responsive: true,
             maintainAspectRatio: false,
             animation: false,
-            plugins: {
-                legend: {
-                    display: false
-                }
+            legend: {
+                display: false
             },
             scales: {
                 x: { title: { display: true, text: "t" } },
@@ -187,10 +185,8 @@ function initCharts() {
             responsive: true,
             maintainAspectRatio: false,
             animation: false,
-            plugins: {
-                legend: {
-                    display: false
-                }
+            legend: {
+                display: false
             },
             scales: {
                 x: { title: { display: true, text: "t" } },
