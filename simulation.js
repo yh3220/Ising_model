@@ -139,6 +139,7 @@ function recomputeObservables() {
 // =========================
 // charts
 // =========================
+
 function initCharts() {
     if (energyChart) energyChart.destroy();
     if (magChart) magChart.destroy();
@@ -166,19 +167,45 @@ function initCharts() {
             maintainAspectRatio: false,
             animation: false,
             legend: {
-                display: false
+                display: false,
+                labels: {
+                    boxWidth: 0,
+                    fontColor: "rgba(0,0,0,0)"
+                }
             },
             scales: {
                 xAxes: [{
+                    ticks: {
+                        fontColor: "#d8d8d8",
+                        fontSize: 16
+                    },
+                    gridLines: {
+                        color: "rgba(255,255,255,0.08)",
+                        lineWidth: 1
+                    },
                     scaleLabel: {
                         display: true,
-                        labelString: "t"
+                        labelString: "t",
+                        fontColor: "#f2f2f2",
+                        fontSize: 20,
+                        fontStyle: "bold"
                     }
                 }],
                 yAxes: [{
+                    ticks: {
+                        fontColor: "#d8d8d8",
+                        fontSize: 16
+                    },
+                    gridLines: {
+                        color: "rgba(255,255,255,0.08)",
+                        lineWidth: 1
+                    },
                     scaleLabel: {
                         display: true,
-                        labelString: "E"
+                        labelString: "E",
+                        fontColor: "#f2f2f2",
+                        fontSize: 20,
+                        fontStyle: "bold"
                     }
                 }]
             }
@@ -205,23 +232,47 @@ function initCharts() {
             maintainAspectRatio: false,
             animation: false,
             legend: {
-                display: false
+                display: false,
+                labels: {
+                    boxWidth: 0,
+                    fontColor: "rgba(0,0,0,0)"
+                }
             },
             scales: {
                 xAxes: [{
+                    ticks: {
+                        fontColor: "#d8d8d8",
+                        fontSize: 16
+                    },
+                    gridLines: {
+                        color: "rgba(255,255,255,0.08)",
+                        lineWidth: 1
+                    },
                     scaleLabel: {
                         display: true,
-                        labelString: "t"
+                        labelString: "t",
+                        fontColor: "#f2f2f2",
+                        fontSize: 20,
+                        fontStyle: "bold"
                     }
                 }],
                 yAxes: [{
                     ticks: {
                         min: -1,
-                        max: 1
+                        max: 1,
+                        fontColor: "#d8d8d8",
+                        fontSize: 16
+                    },
+                    gridLines: {
+                        color: "rgba(255,255,255,0.08)",
+                        lineWidth: 1
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: "m"
+                        labelString: "m",
+                        fontColor: "#f2f2f2",
+                        fontSize: 20,
+                        fontStyle: "bold"
                     }
                 }]
             }
