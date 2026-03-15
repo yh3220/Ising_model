@@ -230,56 +230,57 @@ function initCharts() {
                 fill: false
             }]
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: false,
-            legend: {
-                display: false,
-                labels: {
-                    boxWidth: 0,
-                    fontColor: "rgba(0,0,0,0)"
+             options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false,
+                // --- 关键修改在这里 ---
+                plugins: {
+                    legend: {
+                        display: false // 在新版本中，legend 必须放在 plugins 内
+                    }
+                },
+                scales: {
+                    x: { // 新版本直接用 x，不再是 xAxes 数组
+                        ticks: {
+                            color: "#d8d8d8", // fontColor 改为 color
+                            font: { size: 16 } // fontSize 改为 font.size
+                        },
+                        grid: { // gridLines 改为 grid
+                            color: "rgba(255,255,255,0.08)",
+                            lineWidth: 1
+                        },
+                        title: { // scaleLabel 改为 title
+                            display: true,
+                            text: "t", // labelString 改为 text
+                            color: "#f2f2f2",
+                            font: {
+                                size: 20,
+                                weight: "bold" // fontStyle 改为 weight
+                            }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: "#d8d8d8",
+                            font: { size: 16 }
+                        },
+                        grid: {
+                            color: "rgba(255,255,255,0.08)",
+                            lineWidth: 1
+                        },
+                        title: {
+                            display: true,
+                            text: "E", // 磁化率图表对应修改为 "m"
+                            color: "#f2f2f2",
+                            font: {
+                                size: 20,
+                                weight: "bold"
+                            }
+                        }
+                    }
                 }
-            },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontColor: "#d8d8d8",
-                        fontSize: 16
-                    },
-                    gridLines: {
-                        color: "rgba(255,255,255,0.08)",
-                        lineWidth: 1
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: "t",
-                        fontColor: "#f2f2f2",
-                        fontSize: 20,
-                        fontStyle: "bold"
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        min: -1,
-                        max: 1,
-                        fontColor: "#d8d8d8",
-                        fontSize: 16
-                    },
-                    gridLines: {
-                        color: "rgba(255,255,255,0.08)",
-                        lineWidth: 1
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: "m",
-                        fontColor: "#f2f2f2",
-                        fontSize: 20,
-                        fontStyle: "bold"
-                    }
-                }]
-            }
-        }
+            }  
     });
 }
 
