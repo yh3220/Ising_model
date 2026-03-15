@@ -149,7 +149,8 @@ function initCharts() {
             labels: timeData,
             datasets: [{
                 data: energyData,
-                borderWidth: 2,
+                borderColor: "#00bfff",
+                borderWidth: 4,
                 pointRadius: 0,
                 tension: 0
             }]
@@ -158,6 +159,11 @@ function initCharts() {
             responsive: true,
             maintainAspectRatio: false,
             animation: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
                 x: { title: { display: true, text: "t" } },
                 y: { title: { display: true, text: "E" } }
@@ -171,7 +177,8 @@ function initCharts() {
             labels: timeData,
             datasets: [{
                 data: magData,
-                borderWidth: 2,
+                borderColor: "#00bfff",
+                borderWidth: 4,
                 pointRadius: 0,
                 tension: 0
             }]
@@ -180,6 +187,11 @@ function initCharts() {
             responsive: true,
             maintainAspectRatio: false,
             animation: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
                 x: { title: { display: true, text: "t" } },
                 y: {
