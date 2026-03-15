@@ -271,7 +271,7 @@ function initCharts() {
                         },
                         title: {
                             display: true,
-                            text: "E", // 磁化率图表对应修改为 "m"
+                            text: "m", // 磁化率图表对应修改为 "m"
                             color: "#f2f2f2",
                             font: {
                                 size: 20,
