@@ -131,7 +131,6 @@ function initCharts() {
         data: {
             labels: timeData,
             datasets: [{
-                label: "E(t)",
                 data: energyData,
                 borderWidth: 2,
                 pointRadius: 0,
@@ -154,7 +153,6 @@ function initCharts() {
         data: {
             labels: timeData,
             datasets: [{
-                label: "m(t)",
                 data: magData,
                 borderWidth: 2,
                 pointRadius: 0,
