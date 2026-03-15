@@ -140,6 +140,7 @@ function initCharts() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             animation: false,
             scales: {
                 x: { title: { display: true, text: "t" } },
@@ -162,6 +163,7 @@ function initCharts() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             animation: false,
             scales: {
                 x: { title: { display: true, text: "t" } },
