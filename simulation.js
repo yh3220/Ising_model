@@ -9,6 +9,12 @@ let j_in, kB, temperature, h_field;
 let mc_steps;
 let total_energy;
 
+let energyChart, magChart;
+let timeData = [];
+let energyData = [];
+let magData = [];
+let simTime = 0;
+let maxPoints = 300;
 
 function getEnergy(grid) {
     let interaction_energy = 0;
@@ -112,7 +118,87 @@ function getSpin(grid) {
     }
     return total_spin;
 }
+function getMagnetization(grid) {
+    return getSpin(grid) / (grid_size * grid_size);
+}
 
+function initCharts() {
+    const energyCtx = document.getElementById("energy-chart").getContext("2d");
+    const magCtx = document.getElementById("mag-chart").getContext("2d");
+
+    energyChart = new Chart(energyCtx, {
+        type: "line",
+        data: {
+            labels: timeData,
+            datasets: [{
+                label: "E(t)",
+                data: energyData,
+                borderWidth: 2,
+                pointRadius: 0,
+                tension: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            animation: false,
+            scales: {
+                x: { title: { display: true, text: "t" } },
+                y: { title: { display: true, text: "E" } }
+            }
+        }
+    });
+
+    magChart = new Chart(magCtx, {
+        type: "line",
+        data: {
+            labels: timeData,
+            datasets: [{
+                label: "m(t)",
+                data: magData,
+                borderWidth: 2,
+                pointRadius: 0,
+                tension: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            animation: false,
+            scales: {
+                x: { title: { display: true, text: "t" } },
+                y: {
+                    min: -1,
+                    max: 1,
+                    title: { display: true, text: "m" }
+                }
+            }
+        }
+    });
+}
+
+function updateCharts() {
+    let currentEnergy = getEnergy(grid);
+    let currentMag = getMagnetization(grid);
+
+    simTime += 1;
+    timeData.push(simTime);
+    energyData.push(currentEnergy);
+    magData.push(currentMag);
+
+    if (timeData.length > maxPoints) {
+        timeData.shift();
+        energyData.shift();
+        magData.shift();
+    }
+
+    energyChart.data.labels = timeData;
+    energyChart.data.datasets[0].data = energyData;
+
+    magChart.data.labels = timeData;
+    magChart.data.datasets[0].data = magData;
+
+    energyChart.update();
+    magChart.update();
+}
 function updateColor(row, col) {
     if (grid[row][col] == 1) {
         context.fillStyle = "#fedd2b";
@@ -153,8 +239,13 @@ function update() {
         }
     }
 
-    spin_display.innerHTML = `Resultant spin: ${getSpin(grid)}`;
-    energy_display.innerHTML = `Total energy: ${getEnergy(grid)}`;
+    let currentSpin = getSpin(grid);
+    let currentEnergy = getEnergy(grid);
+    
+    spin_display.innerHTML = `Resultant spin: ${currentSpin}`;
+    energy_display.innerHTML = `Total energy: ${currentEnergy}`;
+    
+    updateCharts();
 }
 
 function render() {
@@ -221,6 +312,23 @@ function initGrid() {
     render();
     
     total_energy = getEnergy(grid);
+    let currentMag = getMagnetization(grid);
+
+    simTime = 0;
+    timeData = [simTime];
+    energyData = [total_energy];
+    magData = [currentMag];
+    
+    if (energyChart && magChart) {
+        energyChart.data.labels = timeData;
+        energyChart.data.datasets[0].data = energyData;
+    
+        magChart.data.labels = timeData;
+        magChart.data.datasets[0].data = magData;
+    
+        energyChart.update();
+        magChart.update();
+    }
 }
 
 function initParams() {
