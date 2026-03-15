@@ -149,7 +149,7 @@ function initCharts() {
             labels: timeData,
             datasets: [{
                 data: energyData,
-                borderColor: "#00bfff",
+                borderColor: "#ff0037",
                 borderWidth: 4,
                 pointRadius: 0,
                 tension: 0
