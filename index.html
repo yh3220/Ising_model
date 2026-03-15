@@ -94,6 +94,16 @@
             <input id="h-input" type="range" min="-10" max="10" step="0.1" onchange="updateParams('h')"
               oninput="updateParams('h')">
           </center>
+        
+          <hr>
+          <div class="row" style="margin-bottom:0;">
+            <div class="col s12 m6">
+              <canvas id="energy-chart" height="180"></canvas>
+            </div>
+            <div class="col s12 m6">
+              <canvas id="mag-chart" height="180"></canvas>
+            </div>
+          </div>
         </div>
       </div>
     </div>
