@@ -59,6 +59,7 @@ function step() {
 
 window.onload = function () {
     defaultParams();
+    initCharts();
     initParams();
     animate(step);
 }
