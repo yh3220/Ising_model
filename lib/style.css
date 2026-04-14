@@ -143,3 +143,47 @@ hr {
       transform: rotate(360deg);
   }
 }
+
+.sim-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 18px;
+  align-items: start;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.sim-controls-col {
+  overflow: hidden;
+  min-height: 80vh;
+}
+
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;       
+  overflow: hidden;   
+}
+.chart-row canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+#canvas {
+  max-width: 100%;
+  display: block;
+}
+.sim-grid > div:first-child {
+  overflow: hidden;
+}
+
+@media (max-width: 992px) {
+  .sim-grid {
+    grid-template-columns: 1fr;
+  }
+  .sim-controls-col {
+    min-height: unset;
+  }
+}
